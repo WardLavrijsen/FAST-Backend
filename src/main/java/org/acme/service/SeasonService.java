@@ -3,13 +3,15 @@ package org.acme.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
 import org.acme.domain.Season;
 import org.acme.repository.SeasonRepository;
+import org.acme.service.FootbalAPI;
 
 @ApplicationScoped
 public class SeasonService {
@@ -21,10 +23,14 @@ public class SeasonService {
      }
 
     public List<Season> allSeason() {
+        try {
+            HttpResponse<JsonNode> data = FootbalAPI.test();
+            System.out.println(data.getBody());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
-        System.out.print("test");
-
-        return seasonRepository.listAll();
+        return  seasonRepository.listAll();
     }
 
     @Transactional
