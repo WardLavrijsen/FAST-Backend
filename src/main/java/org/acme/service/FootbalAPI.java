@@ -35,7 +35,8 @@ public class FootbalAPI {
 
         // vaders
         // HttpResponse<JsonNode> response =
-        // Unirest.get("https://api-football-v1.p.rapidapi.com/v3/leagues?season=2022")
+        // Unirest.get("https://api-football-v1.p.rapidapi.com/v3/teams?season=2022&league="
+        // + id)
         // .header("x-rapidapi-key",
         // "b84ef65e34msh30e350445f13a9fp120c62jsnd49982b3f9c5")
         // .header("x-rapidapi-host", "api-football-v1.p.rapidapi.com")
