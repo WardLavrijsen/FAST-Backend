@@ -15,10 +15,23 @@ on:
 
 #       - run: quarkus build
 
+#jobs:
+#  native_build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@master
+#      - uses: maxday/quarkus-native-build-docker-action@1
+#          outputName: myApp-runner
+
 jobs:
-  native_build:
+  build-gradle-project:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: maxday/quarkus-native-build-docker-action@1
-          outputName: myApp-runner
+      - name: Checkout project sources
+        uses: actions/checkout@v2
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+      - name: Run build with Gradle Wrapper
+        run: ./gradlew build
