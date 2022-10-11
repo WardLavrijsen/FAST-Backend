@@ -11,6 +11,8 @@ import org.jboss.resteasy.reactive.RestPath;
 
 import org.acme.service.FootbalService;
 
+import javax.annotation.security.RolesAllowed;
+
 @Path("/api/clubs/{id}")
 public class ClubRecource {
 

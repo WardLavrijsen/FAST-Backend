@@ -21,13 +21,6 @@ public class SeasonService {
     }
 
     public List<Season> allSeason() {
-        try {
-            HttpResponse<JsonNode> resonse = FootbalAPI.Leagues();
-            System.out.println(resonse.getBody());
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
         return seasonRepository.listAll();
     }
 

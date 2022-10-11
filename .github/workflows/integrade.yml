@@ -3,15 +3,22 @@ name: Quarkus Continuous Integration
 on:
   pull_request:
     branches: [main]
+# jobs:
+#   test_pull_request:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - uses: actions/setup-java@v1
+#         with:
+#           java-version: 19
+#       - uses: quarkusio/quarkus@main
+
+#       - run: quarkus build
 
 jobs:
-  test_pull_request:
+  native_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-java@v1
-        with:
-          java-version: 19
-      - uses: quarkusio/quarkus@main
-
-      - run: quarkus build
+      - uses: maxday/quarkus-native-build-docker-action@1
+          outputName: myApp-runner
