@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: quarkusio/quarkus
       - uses: actions/setup-java@v1
         with:
           java-version: 19
