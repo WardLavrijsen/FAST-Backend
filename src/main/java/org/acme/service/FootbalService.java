@@ -9,11 +9,20 @@ import kong.unirest.JsonNode;
 public class FootbalService {
 
     public FootbalService() {
-     }
+    }
 
     public JsonNode allLeagues() {
         try {
             HttpResponse<JsonNode> data = FootbalAPI.Leagues();
+            return data.getBody();
+        } catch (Exception e) {
+            return new JsonNode("{message: 'error', error: '" + e + "'}");
+        }
+    }
+
+    public JsonNode clubById(String id) {
+        try {
+            HttpResponse<JsonNode> data = FootbalAPI.Clubs(id);
             return data.getBody();
         } catch (Exception e) {
             return new JsonNode("{message: 'error', error: '" + e + "'}");

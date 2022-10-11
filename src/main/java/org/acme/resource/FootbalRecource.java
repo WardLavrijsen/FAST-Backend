@@ -1,8 +1,5 @@
 package org.acme.resource;
 
-import java.lang.reflect.Array;
-
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
