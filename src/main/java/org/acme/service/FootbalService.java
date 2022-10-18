@@ -28,4 +28,13 @@ public class FootbalService {
             return new JsonNode("{message: 'error', error: '" + e + "'}");
         }
     }
+
+    public JsonNode gamesByClub(String id) {
+        try {
+            HttpResponse<JsonNode> data = FootbalAPI.Games(id);
+            return data.getBody();
+        } catch (Exception e) {
+            return new JsonNode("{message: 'error', error: '" + e + "'}");
+        }
+    }
 }
