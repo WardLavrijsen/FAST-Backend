@@ -6,8 +6,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import kong.unirest.HttpResponse;
-import kong.unirest.JsonNode;
 import org.acme.domain.Season;
 import org.acme.repository.SeasonRepository;
 
