@@ -8,7 +8,7 @@ public class GreetingResource {
 
     @GET
     public String hello() {
-        return "Hello There!";
+        return "Hello from RESTEasy Reactive";
     }
 
 }
