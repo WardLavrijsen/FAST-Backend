@@ -40,11 +40,6 @@ public class GameService {
     }
 
     @Transactional
-    public Game addGame(Game game) {
-        gameRepository.persist(game);
-        return game;
-    }
-
     public void addGames(String id, String leagueid) {
         var data = new JSONObject(footbalService.gamesByClub(id, leagueid).toPrettyString());
         var games = data.getJSONArray("response");
@@ -68,7 +63,7 @@ public class GameService {
                 insertGame.setDate(game.getJSONObject("fixture").get("date").toString());
                 insertGame.setLeagueId(Integer.parseInt(leagueid));
 
-                addGame(insertGame);
+                gameRepository.persist(insertGame);
 
             }
 
