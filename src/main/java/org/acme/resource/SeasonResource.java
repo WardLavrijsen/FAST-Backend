@@ -28,6 +28,7 @@ public class SeasonResource {
 
     @POST
     public Response addSeason(Season season) {
+        System.out.println(season.getYear());
         Season seasonWithId = seasonService.addSeason(season);
         return Response.created(URI.create("/api/season/" + seasonWithId.getId())).build();
     }

@@ -12,8 +12,8 @@ import javax.persistence.Table;
 @Table(name = "games")
 public class Game {
     @Id
-    @GeneratedValue(generator = "UUID")
-    private UUID id;
+    @GeneratedValue(generator = "INCREMENT")
+    private Integer id;
 
     private Integer leagueId;
 
@@ -42,9 +42,9 @@ public class Game {
         this.date = date;
     }
 
-    public UUID getId() {
-        return this.id;
-    }
+    // public UUID getId() {
+    // return this.id;
+    // }
 
     public Integer getLeagueId() {
         return this.leagueId;

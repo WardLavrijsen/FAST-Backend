@@ -1,4 +1,4 @@
-name: SonarCloud
+name: Quarkus Continues Integration
 on:
   push:
     branches:
