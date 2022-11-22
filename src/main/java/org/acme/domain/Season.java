@@ -1,15 +1,11 @@
 package org.acme.domain;
 
-import java.util.UUID;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 @Entity
 public class Season {
     @Id
-    @GeneratedValue(generator = "UUID")
-    private UUID id;
     private String year;
 
     public Season() {
@@ -19,8 +15,8 @@ public class Season {
         this.year = year;
     }
 
-    public UUID getId() {
-        return id;
+    public String getId() {
+        return year;
     }
 
     public String getYear() {

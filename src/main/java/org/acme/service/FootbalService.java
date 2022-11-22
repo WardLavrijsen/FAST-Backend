@@ -29,9 +29,9 @@ public class FootbalService {
         }
     }
 
-    public JsonNode gamesByClub(String id) {
+    public JsonNode gamesByClub(String id, String leagueid) {
         try {
-            HttpResponse<JsonNode> data = FootbalAPI.Games(id);
+            HttpResponse<JsonNode> data = FootbalAPI.Games(id, leagueid);
             return data.getBody();
         } catch (Exception e) {
             return new JsonNode("{message: 'error', error: '" + e + "'}");

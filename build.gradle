@@ -1,6 +1,14 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id "jacoco"
+    id "org.sonarqube" version "3.5.0.2730"
+}
+ 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
 }
 
 repositories {
@@ -9,6 +17,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.json:json:20140107'
+    implementation 'io.quarkus:quarkus-container-image-docker'
     implementation 'io.quarkus:quarkus-jdbc-h2'
     implementation 'io.quarkus:quarkus-security-jpa'
     implementation 'com.konghq:unirest-java:3.11.09'
@@ -37,4 +47,12 @@ compileJava {
 
 compileTestJava {
     options.encoding = 'UTF-8'
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "WardLavrijsen_FAST-Backend"
+    property "sonar.organization", "wardlavrijsen"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }

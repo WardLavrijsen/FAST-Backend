@@ -5,6 +5,8 @@ import io.quarkus.security.jpa.Username;
 import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
 
+import io.quarkus.elytron.security.common.BcryptUtil;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -55,7 +57,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BcryptUtil.bcryptHash(password);
     }
 
     public String getRole() {
