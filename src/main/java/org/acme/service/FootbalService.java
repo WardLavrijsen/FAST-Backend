@@ -13,7 +13,7 @@ public class FootbalService {
 
     public JsonNode allLeagues() {
         try {
-            HttpResponse<JsonNode> data = FootbalAPI.Leagues();
+            HttpResponse<JsonNode> data = ApiFootball.Leagues();
             return data.getBody();
         } catch (Exception e) {
             return new JsonNode("{message: 'error', error: '" + e + "'}");
@@ -22,7 +22,7 @@ public class FootbalService {
 
     public JsonNode clubById(String id) {
         try {
-            HttpResponse<JsonNode> data = FootbalAPI.Clubs(id);
+            HttpResponse<JsonNode> data = ApiFootball.Clubs(id);
             return data.getBody();
         } catch (Exception e) {
             return new JsonNode("{message: 'error', error: '" + e + "'}");
@@ -31,7 +31,7 @@ public class FootbalService {
 
     public JsonNode gamesByClub(String id, String leagueid) {
         try {
-            HttpResponse<JsonNode> data = FootbalAPI.Games(id, leagueid);
+            HttpResponse<JsonNode> data = ApiFootball.Games(id, leagueid);
             return data.getBody();
         } catch (Exception e) {
             return new JsonNode("{message: 'error', error: '" + e + "'}");
