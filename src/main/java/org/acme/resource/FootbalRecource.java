@@ -3,13 +3,14 @@ package org.acme.resource;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import org.acme.service.FootbalService;
+
+import org.acme.repository.FootballRepository;
 
 @Path("/api/leagues")
 public class FootbalRecource {
 
     @Inject
-    private FootbalService footbalService;
+    private FootballRepository footbalService;
 
     public FootbalRecource() {
     }
