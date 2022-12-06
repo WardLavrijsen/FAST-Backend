@@ -7,23 +7,28 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import org.acme.domain.Game;
+import org.acme.repository.TestFootballRepository;
+import org.acme.repository.TestInterface;
 import org.json.*;
-
-import org.acme.service.FootbalService;
 import org.acme.service.GameService;
-
+import org.acme.repository.FootballRepository;
 import org.acme.repository.GameRepository;
 
 @ApplicationScoped
 public class GameService {
 
-    @Inject
-    GameRepository gameRepository;
+    private GameRepository gameRepository;
 
-    @Inject
-    private FootbalService footbalService;
+    private TestInterface footbalService;
 
     public GameService() {
+        footbalService = new FootballRepository();
+        gameRepository = new GameRepository();
+    }
+
+    public GameService(TestInterface in) {
+        footbalService = in;
+        gameRepository = new GameRepository();
     }
 
     public List<Game> allGames() {
@@ -41,32 +46,10 @@ public class GameService {
 
     @Transactional
     public void addGames(String id, String leagueid) {
-        var data = new JSONObject(footbalService.gamesByClub(id, leagueid).toPrettyString());
-        var games = data.getJSONArray("response");
-        Integer amount = Integer.parseInt(data.get("results").toString());
-        for (int i = 0; i < amount; i++) {
-            var game = games.getJSONObject(i);
-            String homeTeam = game.getJSONObject("teams").getJSONObject("home").get("id").toString();
-            if (Integer.parseInt(homeTeam) == Integer.parseInt(id)) {
-                Game insertGame = new Game();
 
-                insertGame.setHomeid(
-                        Integer.parseInt(game.getJSONObject("teams").getJSONObject("home").get("id").toString()));
-                insertGame.setHomename(game.getJSONObject("teams").getJSONObject("home").get("name").toString());
-                insertGame.setHomelogo(game.getJSONObject("teams").getJSONObject("home").get("logo").toString());
-
-                insertGame.setAwayid(
-                        Integer.parseInt(game.getJSONObject("teams").getJSONObject("away").get("id").toString()));
-                insertGame.setAwayname(game.getJSONObject("teams").getJSONObject("away").get("name").toString());
-                insertGame.setAwaylogo(game.getJSONObject("teams").getJSONObject("away").get("logo").toString());
-
-                insertGame.setDate(game.getJSONObject("fixture").get("date").toString());
-                insertGame.setLeagueId(Integer.parseInt(leagueid));
-
-                gameRepository.persist(insertGame);
-
-            }
-
+        List<Game> games = footbalService.GamesByClub(id, leagueid);
+        for (Game game : games) {
+            gameRepository.persist(game);
         }
     }
 }
