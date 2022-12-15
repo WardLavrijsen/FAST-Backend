@@ -53,6 +53,7 @@ compileTestJava {
 sonarqube {
   properties {
     property "sonar.projectKey", "WardLavrijsen_FAST-Backend"
+      property "sonar.login", "cfaa782b9a4376b50452b6171d630dc7c31e94cf"
     property "sonar.organization", "wardlavrijsen"
     property "sonar.host.url", "https://sonarcloud.io"
   }
