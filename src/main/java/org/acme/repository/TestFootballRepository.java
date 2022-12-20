@@ -35,7 +35,7 @@ public class TestFootballRepository implements TestInterface {
             HttpResponse<JsonNode> data = ApiFootball.Games(id, leagueid);
             return data.getBody();
         } catch (Exception e) {
-            return new JsonNode("{message: 'error', error: '" + e + "'}");
+            return new JsonNode("{message: 'error occured', error: '" + e + "'}");
         }
     }
 
